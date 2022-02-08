@@ -24,11 +24,11 @@ public class BRDemo {
             如果单独读取了空行(此行内容只有一个换行符，比如当前源代码中的第二行就是空行)，
             那么会返回一个空字符串。
             当方法返回值为null时，表示流读取到了末尾。
-
          */
-        String line = br.readLine();
-        System.out.println(line);
-
+        String line;
+        while((line = br.readLine()) != null) {
+            System.out.println(line);
+        }
         br.close();
 
 
