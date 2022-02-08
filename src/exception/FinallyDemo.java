@@ -10,4 +10,23 @@ package exception;
  * 因此我们会将如释放资源等操作放在finally中确保执行，比如IO操作后的close()调用。
  */
 public class FinallyDemo {
+    public static void main(String[] args) {
+        System.out.println("程序开始了");
+        try {
+            String str = null;
+            System.out.println(str.length());
+            return;//方法实际返回前也要先执行完finally
+        }catch(Exception e){
+            System.out.println("出错了!");
+        }finally {
+            System.out.println("finally中的代码执行了!");
+        }
+        System.out.println("程序结束了");
+    }
 }
+
+
+
+
+
+
