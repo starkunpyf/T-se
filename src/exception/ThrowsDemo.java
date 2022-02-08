@@ -3,6 +3,7 @@ package exception;
 import java.awt.*;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.sql.SQLException;
 
 /**
  * 子类重写超类含有throws声明异常抛出的方法时对throws的重写规则
@@ -21,7 +22,13 @@ class SubClass extends ThrowsDemo{
 //    public void dosome(){}
 
     //允许抛出超类方法抛出异常的子类型异常
-    public void dosome()throws FileNotFoundException {}
+//    public void dosome()throws FileNotFoundException {}
+
+    //不允许抛出额外异常(超类方法没有声明抛出的，或和超类声明抛出的异常没有继承关系的)
+//    public void dosome()throws SQLException {}
+
+    //不允许抛出超类方法抛出异常的超类型异常
+//    public void dosome()throws Exception {}
 }
 
 
