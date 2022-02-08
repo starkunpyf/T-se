@@ -10,8 +10,18 @@ package exception;
 public class ThrowDemo {
     public static void main(String[] args) {
         Person p = new Person();
-
-        p.setAge(10000);//满足语法，但是不满足业务需求。
+        /*
+            当我们调用一个含有throws声明异常抛出的方法时，编译器要求我们必须处理该异常
+            否则编译不通过。
+            处理手段有两种:
+            1:使用try-catch捕获其声明的异常
+            2:在当前方法上继续使用throws声明该异常的抛出
+         */
+        try {
+            p.setAge(10000);//满足语法，但是不满足业务需求。
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         System.out.println("此人年龄:"+p.getAge());
     }
