@@ -1,8 +1,12 @@
 package socket;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.nio.charset.StandardCharsets;
 
 /**
  * 聊天室服务端
@@ -50,6 +54,15 @@ public class Server {
             System.out.println("等待客户端链接...");
             Socket socket = server.accept();
             System.out.println("一个客户端链接了!");
+            /*
+                通过Socket的方法:
+                InputStream getInputStream()
+                获取一个字节输入流，可以读取来自远端计算机发送过来的字节数据
+             */
+            InputStream in = socket.getInputStream();
+            InputStreamReader isr = new InputStreamReader(in, StandardCharsets.UTF_8);
+            BufferedReader br = new BufferedReader(isr);
+
 
         } catch (IOException e) {
             e.printStackTrace();
