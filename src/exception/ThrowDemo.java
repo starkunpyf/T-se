@@ -19,9 +19,10 @@ public class ThrowDemo {
          */
         try {
             p.setAge(10000);//满足语法，但是不满足业务需求。
-        } catch (Exception e) {
+        } catch (IllegalAgeException e) {
             e.printStackTrace();
         }
+
 
         System.out.println("此人年龄:"+p.getAge());
     }
