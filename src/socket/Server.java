@@ -2,6 +2,7 @@ package socket;
 
 import java.io.IOException;
 import java.net.ServerSocket;
+import java.net.Socket;
 
 /**
  * 聊天室服务端
@@ -28,7 +29,9 @@ public class Server {
                 java.net.BindException:address already in use
                          绑定异常        地址    已经     被占用了
              */
+            System.out.println("正在启动服务端...");
             server = new ServerSocket(8088);
+            System.out.println("服务端启动完毕!");
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -37,11 +40,25 @@ public class Server {
     }
 
     public void start(){
+        try {
+            /*
+                ServerSocket提供的方法:
+                Socket accept()
+                该方法是一个阻塞方法，调用后开始等待，直到一个客户端与服务端建立链接
+                为止，此时该方法会立即返回一个Socket，通过这个Socket与该客户端交互
+             */
+            System.out.println("等待客户端链接...");
+            Socket socket = server.accept();
+            System.out.println("一个客户端链接了!");
 
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public static void main(String[] args) {
-
+        Server server = new Server();
+        server.start();
     }
 
 }
