@@ -1,5 +1,6 @@
 package socket;
 
+import java.io.IOException;
 import java.net.Socket;
 
 /**
@@ -17,7 +18,21 @@ public class Client {
      * 初始化客户端
      */
     public Client(){
-
+        try {
+            /*
+                实例化Socket时需要传入两个参数:
+                参数1:远端计算机的地址信息
+                参数2:远端计算机打开的服务端口
+                上述构造器实例化的过程就是与远端计算机建立链接的过程，如果成功建立链接
+                则实例化成功，否则构造器会抛出异常。
+                我们通过远端计算机地址(IP)可以找到网络上的远端计算机，通过服务端口可以
+                链接上运行在该计算机上的服务端应用程序(就是这个程序开打的该端口等待我们
+                链接的。)
+             */
+            socket = new Socket("",0);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
     /**
      * 客户端开始工作的方法
