@@ -1,5 +1,6 @@
 package socket;
 
+import java.io.IOException;
 import java.net.ServerSocket;
 
 /**
@@ -19,8 +20,22 @@ public class Server {
     private ServerSocket server;
 
     public Server(){
+        try {
+            /*
+                实例化ServerSocket的同时需要指定打开的服务端口，客户端就是通过该
+                端口建立链接的。
+                如果该端口已经被操作系统其他程序占用了，那么这里会抛出异常:
+                java.net.BindException:address already in use
+                         绑定异常        地址    已经     被占用了
+             */
+            server = new ServerSocket(8088);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
     }
+
     public void start(){
 
     }
