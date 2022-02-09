@@ -28,8 +28,14 @@ public class Client {
                 我们通过远端计算机地址(IP)可以找到网络上的远端计算机，通过服务端口可以
                 链接上运行在该计算机上的服务端应用程序(就是这个程序开打的该端口等待我们
                 链接的。)
+
+                本机地址信息可以选取:
+                localhost
+                127.0.0.1
              */
-            socket = new Socket("",0);
+            System.out.println("正在链接服务端...");
+            socket = new Socket("localhost",8088);
+            System.out.println("与服务端建立链接!");
         } catch (IOException e) {
             e.printStackTrace();
         }
