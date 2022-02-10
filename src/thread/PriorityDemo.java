@@ -8,6 +8,7 @@ package thread;
  * 并发运行。线程不能主动索取时间片。调度器会尽可能均匀的将时间片分配给每一个线程。
  * 修改线程的优先级可以最大程度改善获取时间片的次数。原则上优先级越高的线程获取时间片的
  * 次数越多。
+ * priority:优先级
  */
 public class PriorityDemo {
     public static void main(String[] args) {
