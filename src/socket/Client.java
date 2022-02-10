@@ -65,9 +65,14 @@ public class Client {
                 }
                 pw.println(line);
             }
-
         } catch (IOException e) {
             e.printStackTrace();
+        } finally{
+            try {
+                socket.close();//与远端计算机断开连接，进行TCP挥手
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
 
     }

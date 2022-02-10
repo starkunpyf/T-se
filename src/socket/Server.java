@@ -17,14 +17,13 @@ public class Server {
      * ServerSocket是运行在服务端的，它的主要工作:
      * 1:打开服务端口(客户端就是通过这个端口与服务端建立链接)
      * 2:监听该服务端口，一旦一个客户端链接，则会返回一个Socket实例，并通过这个
-     *   Socket实例与链接的客户端进行交互
-     *
+     * Socket实例与链接的客户端进行交互
+     * <p>
      * 如果我们将Socket比喻为"电话"，那么ServerSocket相当于是"总机"。
-     *
      */
     private ServerSocket server;
 
-    public Server(){
+    public Server() {
         try {
             /*
                 实例化ServerSocket的同时需要指定打开的服务端口，客户端就是通过该
@@ -43,7 +42,7 @@ public class Server {
 
     }
 
-    public void start(){
+    public void start() {
         try {
             /*
                 ServerSocket提供的方法:
@@ -51,27 +50,29 @@ public class Server {
                 该方法是一个阻塞方法，调用后开始等待，直到一个客户端与服务端建立链接
                 为止，此时该方法会立即返回一个Socket，通过这个Socket与该客户端交互
              */
-            System.out.println("等待客户端链接...");
-            Socket socket = server.accept();
-            System.out.println("一个客户端链接了!");
-            /*
-                通过Socket的方法:
-                InputStream getInputStream()
-                获取一个字节输入流，可以读取来自远端计算机发送过来的字节数据
-             */
-            InputStream in = socket.getInputStream();
-            InputStreamReader isr = new InputStreamReader(in, StandardCharsets.UTF_8);
-            BufferedReader br = new BufferedReader(isr);
+            while (true) {
+                System.out.println("等待客户端链接...");
+                Socket socket = server.accept();
+                System.out.println("一个客户端链接了!");
+                /*
+                    通过Socket的方法:
+                    InputStream getInputStream()
+                    获取一个字节输入流，可以读取来自远端计算机发送过来的字节数据
+                 */
+                InputStream in = socket.getInputStream();
+                InputStreamReader isr = new InputStreamReader(in, StandardCharsets.UTF_8);
+                BufferedReader br = new BufferedReader(isr);
 
-            String line;
-            /*
-                服务端在读取客户端消息这里，如果客户端没有调用socket.close()与服务端
-                正常断开连接(例如客户端直接被杀掉了进程等操作)，那么服务端这里会抛出
-                一个异常:SocketException: Connection reset
-                这是由于客户端非正常操作导致的，服务端无法通过逻辑避免该异常的产生。
-             */
-            while((line = br.readLine())!=null){
-                System.out.println("客户端说:" + line);
+                String line;
+                /*
+                    服务端在读取客户端消息这里，如果客户端没有调用socket.close()与服务端
+                    正常断开连接(例如客户端直接被杀掉了进程等操作)，那么服务端这里会抛出
+                    一个异常:SocketException: Connection reset
+                    这是由于客户端非正常操作导致的，服务端无法通过逻辑避免该异常的产生。
+                 */
+                while ((line = br.readLine()) != null) {
+                    System.out.println("客户端说:" + line);
+                }
             }
         } catch (IOException e) {
             e.printStackTrace();
