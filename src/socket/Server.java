@@ -64,10 +64,15 @@ public class Server {
             BufferedReader br = new BufferedReader(isr);
 
             String line;
+            /*
+                服务端在读取客户端消息这里，如果客户端没有调用socket.close()与服务端
+                正常断开连接(例如客户端直接被杀掉了进程等操作)，那么服务端这里会抛出
+                一个异常:SocketException: Connection reset
+                这是由于客户端非正常操作导致的，服务端无法通过逻辑避免该异常的产生。
+             */
             while((line = br.readLine())!=null){
                 System.out.println("客户端说:" + line);
             }
-
         } catch (IOException e) {
             e.printStackTrace();
         }
