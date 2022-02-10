@@ -13,4 +13,22 @@ package thread;
  *
  */
 public class CurrentThreadDemo {
+    public static void main(String[] args) {
+        //让主线程执行currentThread以便得到它
+        Thread main = Thread.currentThread();
+        System.out.println("主线程:"+main);
+        dosome();//主线程执行dosome方法
+
+    }
+
+    public static void dosome(){
+        Thread t = Thread.currentThread();//获取运行dosome方法的线程
+        System.out.println("运行dosome方法的线程:"+t);
+
+    }
 }
+
+
+
+
+
