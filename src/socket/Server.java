@@ -101,7 +101,7 @@ public class Server {
                         这是由于客户端非正常操作导致的，服务端无法通过逻辑避免该异常的产生。
                      */
                 while ((line = br.readLine()) != null) {
-                    System.out.println("客户端说:" + line);
+                    System.out.println(host+"说:" + line);
                 }
             }catch(IOException e){
                 e.printStackTrace();
