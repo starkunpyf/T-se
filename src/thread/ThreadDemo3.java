@@ -14,11 +14,17 @@ public class ThreadDemo3 {
             }
         };
         //实现Runnable接口重写run方法单独定义任务的形式
-        Runnable r2 = new Runnable(){
-            public void run(){
-                for(int i=0;i<1000;i++){
-                    System.out.println("我是查水表的!");
-                }
+//        Runnable r2 = new Runnable(){
+//            public void run(){
+//                for(int i=0;i<1000;i++){
+//                    System.out.println("我是查水表的!");
+//                }
+//            }
+//        };
+
+        Runnable r2 = ()->{
+            for (int i=0;i<1000;i++){
+                System.out.println("我是查水表的!");
             }
         };
         Thread t2 = new Thread(r2);
