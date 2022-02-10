@@ -63,8 +63,10 @@ public class Server {
             InputStreamReader isr = new InputStreamReader(in, StandardCharsets.UTF_8);
             BufferedReader br = new BufferedReader(isr);
 
-            String line = br.readLine();
-            System.out.println("客户端说:"+line);
+            String line;
+            while((line = br.readLine())!=null){
+                System.out.println("客户端说:" + line);
+            }
 
         } catch (IOException e) {
             e.printStackTrace();
