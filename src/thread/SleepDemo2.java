@@ -34,7 +34,6 @@ public class SleepDemo2 {
                 lin.interrupt();//中断lin线程的睡眠阻塞
             }
         };
-
         lin.start();
         huang.start();
     }
