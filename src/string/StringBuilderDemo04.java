@@ -6,6 +6,7 @@ public class StringBuilderDemo04 {
          * 测试StringBuilder API方法
          */
         StringBuilder buf = new StringBuilder();
+//        StringBuffer buf = new StringBuffer();
         buf.append("A")
                 .append("A") // 追加方法
                 .append("A")

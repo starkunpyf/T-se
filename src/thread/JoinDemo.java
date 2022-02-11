@@ -38,6 +38,17 @@ public class JoinDemo {
                 }
                 System.out.println("show:显示文字完毕!");
 
+                //将show线程阻塞，直到download执行完毕(图片下载完毕)
+//                Thread.sleep(?);//无法准确预估download结束时间
+                try {
+                    /*
+                        当show线程调用download.join()后便进入了阻塞状态。
+                        直到download线程执行完毕才会解除阻塞。
+                     */
+                    download.join();
+                } catch (InterruptedException e) {
+                }
+
                 System.out.println("show:开始显示图片...");
                 if(!isFinish){
                    throw new RuntimeException("图片加载失败!");
@@ -45,7 +56,6 @@ public class JoinDemo {
                 System.out.println("show:图片显示完毕");
             }
         };
-
         download.start();
         show.start();
     }
