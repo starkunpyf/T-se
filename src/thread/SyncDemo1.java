@@ -34,8 +34,12 @@ public class SyncDemo1 {
 
 class Table{
     private int beans = 20;//桌子上有20个豆子
-
-    public int getBean(){
+    /*
+        当一个方法使用关键字synchronized后，该方法成为同步方法，即:
+        多个线程不能同时执行这个方法。
+        将多线程并发操作改为同步有先后顺序的排队执行可以有效解决并发安全问题。
+     */
+    public synchronized int getBean(){
         if(beans==0){//桌子上没有豆子了!
             throw new RuntimeException("没有豆子了!");
         }
