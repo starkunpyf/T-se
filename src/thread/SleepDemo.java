@@ -1,5 +1,7 @@
 package thread;
 
+import java.util.Scanner;
+
 /**
  * 线程提供了一个静态方法:
  * static void sleep(long ms)
@@ -16,7 +18,13 @@ public class SleepDemo {
             程序启动后输入一个数字，从该数字开始每秒递减。到0时输出时间到!
          */
         try {
-            Thread.sleep(5000);
+            Scanner scanner = new Scanner(System.in);
+            System.out.println("请输入一个数字:");
+            for(int num = scanner.nextInt();num>0;num--) {
+                System.out.println(num);
+                Thread.sleep(1000);
+            }
+            System.out.println("时间到!");
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
