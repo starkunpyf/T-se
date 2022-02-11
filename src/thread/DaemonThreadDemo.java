@@ -40,6 +40,8 @@ public class DaemonThreadDemo {
 
         jack.setDaemon(true);
         jack.start();
+
+        while(true);//当主线程不会结束时，进程就不会结束(因为主线程也是普通线程)
     }
 }
 
