@@ -8,10 +8,42 @@ package thread;
  * 进程的结束:当一个java进程中所有的用户线程都结束时，进程就会结束，此时会将所有的
  *          守护线程全部杀死。
  *
- *
  */
 public class DaemonThreadDemo {
+    public static void main(String[] args) {
+        Thread rose = new Thread(){
+            public void run(){
+                for(int i=0;i<5;i++){
+                    System.out.println("rose:let me go!");
+                    try {
+                        Thread.sleep(1000);
+                    } catch (InterruptedException e) {
+                    }
+                }
+                System.out.println("rose:啊啊啊啊啊AAAAAAAaaaaaaaaa......");
+                System.out.println("噗通！");
+            }
+        };
+
+        Thread jack = new Thread(){
+            public void run(){
+                while(true){
+                    System.out.println("jack:you jump！i jump！");
+                    try {
+                        Thread.sleep(1000);
+                    } catch (InterruptedException e) {
+                    }
+                }
+            }
+        };
+        rose.start();
+
+        jack.setDaemon(true);
+        jack.start();
+    }
 }
+
+
 
 
 
