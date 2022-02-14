@@ -105,6 +105,9 @@ public class Server {
                 //2将pw存入共享数组最后一个位置
                 allOut[allOut.length-1] = pw;
 
+                //广播通知所有客户端该用户上线了
+                sendMessage(host + "上线了，当前在线人数:" + allOut.length);
+
 
                 String line;
                     /*
@@ -116,9 +119,7 @@ public class Server {
                 while ((line = br.readLine()) != null) {
                     System.out.println(host+"说:" + line);
                     //将消息回复给所有客户端
-                    for(int i=0;i<allOut.length;i++) {
-                        allOut[i].println(host + "说:" + line);
-                    }
+                    sendMessage(host + "说:" + line);
                 }
             }catch(IOException e){
                 e.printStackTrace();
@@ -132,6 +133,7 @@ public class Server {
                     }
                 }
 
+                sendMessage(host + "下线了，当前在线人数:" + allOut.length);
 
                 try {
                     socket.close();
@@ -140,6 +142,18 @@ public class Server {
                 }
             }
         }
+
+        /**
+         * 广播消息给所有客户端
+         * send:发送
+         * message:消息
+         */
+        private void sendMessage(String message){
+            for(int i=0;i<allOut.length;i++) {
+                allOut[i].println(message);
+            }
+        }
+
     }
 
 }
