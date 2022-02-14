@@ -33,7 +33,10 @@ public class CollectionDemo2 {
         boolean contains = c.contains(p);
         System.out.println("是否包含该元素:"+contains);
 
-
+        /*
+            remove方法删除元素时也是删除与集合中equals比较为true的元素。
+            注:对于List而言，由于可以存放重复元素，对这种情况仅会删除一次。
+         */
         c.remove(p);
         System.out.println(c);
 
