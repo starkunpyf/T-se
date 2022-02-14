@@ -3,18 +3,21 @@ package collection;
 import java.sql.Array;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashSet;
 
 /**
  * 元素会影响集合操作的相关方法
  */
 public class CollectionDemo2 {
     public static void main(String[] args) {
-        Collection c = new ArrayList();
+//        Collection c = new ArrayList();
+        Collection c = new HashSet();//java.util.HashSet,不可重复的集合
         c.add(new Point(1,2));
         c.add(new Point(3,4));
         c.add(new Point(5,6));
         c.add(new Point(7,8));
         c.add(new Point(9,0));
+        c.add(new Point(1,2));//重复元素无法放入Set集合两次
         /*
            集合重写了toString方法，格式为:
            [元素1.toString(), 元素2.toString(), 元素3.toString(), ....]
@@ -30,6 +33,9 @@ public class CollectionDemo2 {
         boolean contains = c.contains(p);
         System.out.println("是否包含该元素:"+contains);
 
+
+        c.remove(p);
+        System.out.println(c);
 
     }
 }
