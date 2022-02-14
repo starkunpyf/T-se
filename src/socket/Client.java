@@ -51,7 +51,7 @@ public class Client {
             ServerHandler handler = new ServerHandler();
             Thread t = new Thread(handler);
             //将读取服务端消息的线程设置为守护线程
-            //这样以来，当我们停止给服务端发送消息(主线程结束,进程没有其他用户线程或者)
+            //这样以来，当我们停止给服务端发送消息(主线程结束,进程没有其他用户线程活着)
             //那么守护线程就会被杀死
             t.setDaemon(true);
             t.start();
