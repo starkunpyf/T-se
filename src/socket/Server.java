@@ -4,6 +4,7 @@ import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.nio.charset.StandardCharsets;
+import java.util.Arrays;
 
 /**
  * 聊天室服务端
@@ -19,6 +20,8 @@ public class Server {
      * 如果我们将Socket比喻为"电话"，那么ServerSocket相当于是"总机"。
      */
     private ServerSocket server;
+    //该数组用于存放所有客户端的输出流，用于广播消息给所有客户端
+    private PrintWriter[] allOut = {};
 
     public Server() {
         try {
@@ -95,6 +98,13 @@ public class Server {
                 OutputStreamWriter osw = new OutputStreamWriter(out,StandardCharsets.UTF_8);
                 BufferedWriter bw = new BufferedWriter(osw);
                 PrintWriter pw = new PrintWriter(bw,true);
+                //将该客户端的输出流存入共享数组allOut中
+                //1对allOut扩容
+                allOut = Arrays.copyOf(allOut,allOut.length+1);
+                //2将pw存入共享数组最后一个位置
+                allOut[allOut.length-1] = pw;
+
+
 
                 String line;
                     /*
