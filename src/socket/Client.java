@@ -57,6 +57,12 @@ public class Client {
             BufferedWriter bw = new BufferedWriter(osw);
             PrintWriter pw = new PrintWriter(bw,true);
 
+            //通过socket获取输入流读取服务端发送过来的消息
+            InputStream in = socket.getInputStream();
+            InputStreamReader isr = new InputStreamReader(in, StandardCharsets.UTF_8);
+            BufferedReader br = new BufferedReader(isr);
+
+
             Scanner scanner = new Scanner(System.in);
             while(true) {
                 String line = scanner.nextLine();
@@ -64,6 +70,9 @@ public class Client {
                     break;
                 }
                 pw.println(line);
+
+                line = br.readLine();//读取服务端发送过来的一句话
+                System.out.println(line);
             }
         } catch (IOException e) {
             e.printStackTrace();
