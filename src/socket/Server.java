@@ -100,11 +100,25 @@ public class Server {
                 BufferedWriter bw = new BufferedWriter(osw);
                 pw = new PrintWriter(bw,true);
                 //将该客户端的输出流存入共享数组allOut中
-                //1对allOut扩容
-                allOut = Arrays.copyOf(allOut,allOut.length+1);
-                //2将pw存入共享数组最后一个位置
-                allOut[allOut.length-1] = pw;
 
+                //不行，因为this是ClientHandler。不同线程是不同的ClientHandler任务
+//                synchronized (this) {
+
+                /*
+                    通常情况下，同步监视器对象选取的就是多个线程并发操作的临界资源。这里临界资源
+                    就是数组allOut。但是这里之所以不可以是因为同步块中有对该数组扩容的操作，这
+                    会导致allOut对象发生了变化，其他需要同步执行该代码块看到的就不再是之前的allOut
+                    导致同步失效
+                 */
+//                synchronized (allOut) {
+
+
+                synchronized (Server.this) {
+                    //1对allOut扩容
+                    allOut = Arrays.copyOf(allOut, allOut.length + 1);
+                    //2将pw存入共享数组最后一个位置
+                    allOut[allOut.length - 1] = pw;
+                }
                 //广播通知所有客户端该用户上线了
                 sendMessage(host + "上线了，当前在线人数:" + allOut.length);
 
