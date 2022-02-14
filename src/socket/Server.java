@@ -112,7 +112,6 @@ public class Server {
                  */
 //                synchronized (allOut) {
 
-
                 synchronized (Server.this) {
                     //1对allOut扩容
                     allOut = Arrays.copyOf(allOut, allOut.length + 1);
@@ -146,14 +145,15 @@ public class Server {
                 e.printStackTrace();
             }finally{
                 //将当前客户端的输出流(pw)从allOut数组中删除
-                for(int i=0;i<allOut.length;i++){
-                    if(allOut[i]==pw){
-                        allOut[i] = allOut[allOut.length-1];
-                        allOut = Arrays.copyOf(allOut,allOut.length-1);
-                        break;
+                synchronized (Server.this) {
+                    for (int i = 0; i < allOut.length; i++) {
+                        if (allOut[i] == pw) {
+                            allOut[i] = allOut[allOut.length - 1];
+                            allOut = Arrays.copyOf(allOut, allOut.length - 1);
+                            break;
+                        }
                     }
                 }
-
                 sendMessage(host + "下线了，当前在线人数:" + allOut.length);
 
                 try {
@@ -170,8 +170,10 @@ public class Server {
          * message:消息
          */
         private void sendMessage(String message){
-            for(int i=0;i<allOut.length;i++) {
-                allOut[i].println(message);
+            synchronized (Server.this) {
+                for (int i = 0; i < allOut.length; i++) {
+                    allOut[i].println(message);
+                }
             }
         }
 
