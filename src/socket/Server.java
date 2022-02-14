@@ -116,10 +116,17 @@ public class Server {
                         一个异常:SocketException: Connection reset
                         这是由于客户端非正常操作导致的，服务端无法通过逻辑避免该异常的产生。
                      */
+//                long time = System.currentTimeMillis();
                 while ((line = br.readLine()) != null) {
+//                    long cur = System.currentTimeMillis();//客户端发过来这句话的时间
+//                    if(cur-time<=500){
+//                        sendMessage("你发的消息太快了!");
+//                        continue;
+//                    }
                     System.out.println(host+"说:" + line);
                     //将消息回复给所有客户端
                     sendMessage(host + "说:" + line);
+//                    time = cur;
                 }
             }catch(IOException e){
                 e.printStackTrace();
