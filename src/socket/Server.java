@@ -105,7 +105,6 @@ public class Server {
                 allOut[allOut.length-1] = pw;
 
 
-
                 String line;
                     /*
                         服务端在读取客户端消息这里，如果客户端没有调用socket.close()与服务端
@@ -115,8 +114,10 @@ public class Server {
                      */
                 while ((line = br.readLine()) != null) {
                     System.out.println(host+"说:" + line);
-                    //将消息回复给客户端
-                    pw.println(host+"说:" + line);
+                    //将消息回复给所有客户端
+                    for(int i=0;i<allOut.length;i++) {
+                        allOut[i].println(host + "说:" + line);
+                    }
                 }
             }catch(IOException e){
                 e.printStackTrace();
