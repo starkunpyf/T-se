@@ -1,5 +1,9 @@
 package collection;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Iterator;
+
 /**
  * 集合的遍历
  * Collection层面上不支持随机访问操作(根据指定的位置获取对应元素)。
@@ -16,4 +20,34 @@ package collection;
  *
  */
 public class IteratorDemo {
+    public static void main(String[] args) {
+        Collection c = new ArrayList();
+        c.add("one");
+        c.add("two");
+        c.add("three");
+        c.add("four");
+        c.add("five");
+        System.out.println(c);
+        //获取迭代器
+        Iterator it = c.iterator();
+        /*
+            boolean hasNext()
+            判断集合是否还有"下一个"元素可以遍历。迭代器的起始位置可以理解为是集合第一个
+            元素位置之前。因此第一次调用hasNext()就是判断集合是否有第一个元素。
+            E next()
+            获取集合中"下一个"元素。获取后迭代器的位置会向后移动一个元素位置
+         */
+        while(it.hasNext()){
+            String e = (String)it.next();
+            System.out.println(e);
+        }
+    }
 }
+
+
+
+
+
+
+
+
