@@ -2,6 +2,7 @@ package collection;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Iterator;
 
 /**
  * JDK5推出时，推出了一个新的特性:增强型for循环
@@ -20,7 +21,7 @@ public class NewForDemo {
             String s = array[i];
             System.out.println(s);
         }
-
+        //新循环遍历数组时会被编译器改回成传统for循环遍历
         for(String s : array){
             System.out.println(s);
         }
@@ -30,6 +31,7 @@ public class NewForDemo {
             类型当做什么看待。
             例如下面的集合中保存的每个元素都是用Object接收的，但是集合将它改成了E类型
             这样一来，我们在使用集合时可以告知集合应当将E当做什么类型看待。
+
             public class XXX{
                 public Object xx;
             }
@@ -44,8 +46,6 @@ public class NewForDemo {
 
             XXX<String> o = new XXX<>();
             o.xx = "abc";
-
-
          */
         Collection<String> c = new ArrayList<>();
         c.add("一");//编译器会检查传入的E对应的实参是否为E指定的实际类型
@@ -54,7 +54,15 @@ public class NewForDemo {
         c.add("四");
         c.add("五");
 //        c.add(1);//当实参不符合E指定的实际类型时，编译不通过
+
+        //新循环遍历集合就是迭代器，编译器会将其改回成迭代器遍历
         for(String str : c){
+            System.out.println(str);
+        }
+        //改回成下面的样子
+        Iterator<String> it = c.iterator();
+        while(it.hasNext()){
+            String str = it.next();
             System.out.println(str);
         }
 
