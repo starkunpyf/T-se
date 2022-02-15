@@ -60,9 +60,9 @@ public class NewForDemo {
             System.out.println(str);
         }
         //改回成下面的样子
-        Iterator<String> it = c.iterator();
+        Iterator it = c.iterator();
         while(it.hasNext()){
-            String str = it.next();
+            String str = (String) it.next();
             System.out.println(str);
         }
 
