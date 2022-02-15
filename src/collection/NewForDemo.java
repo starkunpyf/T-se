@@ -30,6 +30,22 @@ public class NewForDemo {
             类型当做什么看待。
             例如下面的集合中保存的每个元素都是用Object接收的，但是集合将它改成了E类型
             这样一来，我们在使用集合时可以告知集合应当将E当做什么类型看待。
+            public class XXX{
+                public Object xx;
+            }
+
+            XXX o = new XXX();
+            o.xx = 任何类型的值;
+
+            泛型的写法:
+            public class XXX<E>{
+                public E xx;
+            }
+
+            XXX<String> o = new XXX<>();
+            o.xx = "abc";
+
+
          */
         Collection<String> c = new ArrayList<>();
         c.add("一");//编译器会检查传入的E对应的实参是否为E指定的实际类型
