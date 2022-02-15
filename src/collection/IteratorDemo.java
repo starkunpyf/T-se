@@ -23,9 +23,13 @@ public class IteratorDemo {
     public static void main(String[] args) {
         Collection c = new ArrayList();
         c.add("one");
+        c.add("#");
         c.add("two");
+        c.add("#");
         c.add("three");
+        c.add("#");
         c.add("four");
+        c.add("#");
         c.add("five");
         System.out.println(c);
         //获取迭代器
@@ -40,7 +44,22 @@ public class IteratorDemo {
         while(it.hasNext()){
             String e = (String)it.next();
             System.out.println(e);
+            if("#".equals(e)){
+                /*
+                    迭代器在遍历的过程中不能通过集合的方法增删元素，否则迭代器会
+                    抛出并发修改异常:
+                    java.util.ConcurrentModificationException
+                 */
+//                c.remove(e);
+                /*
+                    迭代器提供了remove方法可以将本次通过next方法获取的元素从集合
+                    中删除。
+                 */
+                it.remove();
+            }
         }
+
+        System.out.println(c);
     }
 }
 
