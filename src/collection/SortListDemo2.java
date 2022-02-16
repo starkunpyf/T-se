@@ -32,20 +32,20 @@ public class SortListDemo2 {
 //        Collections.sort(list);
 
         //匿名内部类的形式创建一个比较器
-//        Comparator<Point> com = new Comparator<Point>() {
-//            @Override
-//            /**
-//             * 实现比较器接口后必须重写方法compare.
-//             * 该方法用来定义参数o1与参数o2的比较大小规则
-//             * 返回值用来表示o1与o2的大小关系
-//             */
-//            public int compare(Point o1, Point o2) {
-//                int len1 = o1.getX() * o1.getX() + o1.getY() * o1.getY();
-//                int len2 = o2.getX() * o2.getX() + o2.getY() * o2.getY();
-//                return len1-len2;
-//            }
-//        };
-//        Collections.sort(list,com);//回调模式
+        Comparator<Point> com = new Comparator<Point>() {
+            @Override
+            /**
+             * 实现比较器接口后必须重写方法compare.
+             * 该方法用来定义参数o1与参数o2的比较大小规则
+             * 返回值用来表示o1与o2的大小关系
+             */
+            public int compare(Point o1, Point o2) {
+                int len1 = o1.getX() * o1.getX() + o1.getY() * o1.getY();
+                int len2 = o2.getX() * o2.getX() + o2.getY() * o2.getY();
+                return len1-len2;
+            }
+        };
+        Collections.sort(list,com);//回调模式
 
 //        Collections.sort(list,new Comparator<Point>() {
 //            public int compare(Point o1, Point o2) {
