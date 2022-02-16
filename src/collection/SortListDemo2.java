@@ -2,6 +2,7 @@ package collection;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 /**
@@ -26,10 +27,22 @@ public class SortListDemo2 {
             侵入性:
             当我们调用某个API时，其反过来要求我们为其修改其他额外的代码，这种现象就
             成为侵入性。侵入性不利于程序后期的维护，尽可能避免。
-
             compare:比较
          */
 //        Collections.sort(list);
+
+        //匿名内部类的形式创建一个比较器
+        Comparator<Point> com = new Comparator<Point>() {
+            @Override
+            /**
+             * 实现比较器接口后必须重写方法compare.
+             * 该方法用来定义参数o1与参数o2的比较大小规则
+             * 返回值用来表示o1与o2的大小关系
+             */
+            public int compare(Point o1, Point o2) {
+                return 0;
+            }
+        };
         System.out.println(list);
     }
 }
