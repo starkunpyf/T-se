@@ -13,7 +13,7 @@ import java.util.Collection;
  *
  */
 public class Demo {
-    public static void main(String[] args) {
+        public static void main(String[] args) {
         String s = "hello";
         int a = 1;
         Point p = new Point(1,2);
