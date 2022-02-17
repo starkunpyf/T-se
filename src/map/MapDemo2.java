@@ -1,8 +1,6 @@
 package map;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 /**
  * Map的遍历
@@ -42,5 +40,34 @@ public class MapDemo2 {
             Integer value = e.getValue();
             System.out.println(key+":"+value);
         }
+        /*
+            Collection values()
+            将所有的value以一个集合的形式返回。
+         */
+        Collection<Integer> values = map.values();
+        for(Integer value : values){
+            System.out.println("value:"+value);
+        }
+        /*
+            JDK8之后集合和Map都支持了基于lambda表达式形式遍历。
+         */
+        //Map会将每一组键值对作为参数传给lambda表达式
+        map.forEach(
+                (k,v)-> System.out.println(k+":"+v)
+        );
+
+        Collection<String> c = new ArrayList<>();
+        c.add("one");
+        c.add("two");
+        c.add("three");
+        c.add("four");
+        c.add("five");
+//        c.forEach(
+//                e->System.out.println(e)
+//        );
+        c.forEach(
+                System.out::println
+        );
+
     }
 }
