@@ -28,5 +28,19 @@ public class MapDemo2 {
         for(String key : keySet){
             System.out.println("key:"+key);
         }
+
+        /*
+            遍历每一组键值对
+            Set entrySet()
+            将当前Map中每一组键值对以Entry实例形式表示并存入集合后返将其返回。
+            java.util.Map.Entry它的每一个实例用于表示一组键值对
+            entry:条目
+         */
+        Set<Map.Entry<String,Integer>> entrySet = map.entrySet();
+        for(Map.Entry<String,Integer> e : entrySet){
+            String key = e.getKey();
+            Integer value = e.getValue();
+            System.out.println(key+":"+value);
+        }
     }
 }
