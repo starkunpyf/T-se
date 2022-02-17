@@ -40,5 +40,24 @@ public class MapDemo {
         System.out.println("语文:"+value);
         value = map.get("体育");
         System.out.println("体育:"+value);
+
+        //返回当前Map中的元素个数
+        int size = map.size();
+        System.out.println("size:"+size);
+
+        /*
+            删除给定的key对应的这组键值对，返回值为这个key对应的value
+         */
+        value = map.remove("数学");
+        System.out.println(map);
+        System.out.println("value:"+value);
+
+        //可以分别判定Map是否包含给定的key或value。判定依据仍然是equals方法。
+        boolean ck = map.containsKey("英语");
+        System.out.println("包含key:"+ck);
+        boolean cv = map.containsValue(97);
+        System.out.println("包含value:"+cv);
+
+
     }
 }
