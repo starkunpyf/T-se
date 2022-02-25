@@ -34,6 +34,14 @@ public class Person {
     private void secret(){//secret:秘密
         System.out.println(name+":这是我的私有方法!");
     }
+
+    @Override
+    public String toString() {
+        return "Person{" +
+                "name='" + name + '\'' +
+                ", age=" + age +
+                '}';
+    }
 }
 
 

@@ -1,6 +1,7 @@
 package reflect;
 
 import java.lang.reflect.Method;
+import java.util.Scanner;
 
 /**
  * java反射机制
@@ -10,7 +11,7 @@ import java.lang.reflect.Method;
  * 程序不能过度的依赖反射机制。
  */
 public class ReflectDemo1 {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws ClassNotFoundException {
         /*
             Class 类对象
             Class的每一个实例用于表示JVM中加载的一个类，并且每个被JVM加载的类都
@@ -33,7 +34,22 @@ public class ReflectDemo1 {
             3:类加载器ClassLoader形式
          */
 
-        Class cls = String.class;//获取String的类对象
+//        Class cls = String.class;//获取String的类对象
+
+//        Class cls = Person.class;
+
+//        Class cls = Class.forName("java.lang.String");
+//        Class cls = Class.forName("reflect.Person");
+        /*
+            java.util.ArrayList
+            java.io.FileInputStream
+            reflect.Person
+         */
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("请输入类名:");
+        String className = scanner.nextLine();
+        Class cls = Class.forName(className);
+
         //通过类对象获取其表示的String的相关信息
         String name = cls.getName();
         System.out.println(name);
@@ -42,12 +58,13 @@ public class ReflectDemo1 {
         //获取包名
         System.out.println(cls.getPackage().getName());
         //获取当前类对象所表示的类的所有公开方法(包含从超类继承的方法)
-//        Method[] methods = cls.getMethods();
+        Method[] methods = cls.getMethods();
+        System.out.println(cls.getSimpleName()+":一共有"+methods.length+"个公开方法");
 
         //获取当前类对象所表示的类自身定义的所有方法(含私有方法，不含从超类继承的方法)
-        Method[] methods = cls.getDeclaredMethods();
-
-        System.out.println(cls.getSimpleName()+":一共有"+methods.length+"个公开方法");
+//        Method[] methods = cls.getDeclaredMethods();
+//        System.out.println(cls.getSimpleName()+":一共有"+methods.length+"个本类方法");
+//
         for(Method method : methods){
             System.out.println(method.getName());
         }
