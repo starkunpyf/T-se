@@ -1,5 +1,7 @@
 package reflect;
 
+import java.lang.reflect.Method;
+
 /**
  * java反射机制
  * 反射是java中的动态机制，它允许我们在程序运行期间再确定对象的实例化，方法的调用，
@@ -27,7 +29,29 @@ public class ReflectDemo1 {
               使用Class的静态方法forName传入要加载的类的完全限定名(包名.类名)
               例如:
               Class cls = Class.forName("java.lang.String")
+
+            3:类加载器ClassLoader形式
          */
+
+        Class cls = String.class;//获取String的类对象
+        //通过类对象获取其表示的String的相关信息
+        String name = cls.getName();
+        System.out.println(name);
+        name = cls.getSimpleName();
+        System.out.println(name);
+        //获取包名
+        System.out.println(cls.getPackage().getName());
+        //获取当前类对象所表示的类的所有公开方法(包含从超类继承的方法)
+//        Method[] methods = cls.getMethods();
+
+        //获取当前类对象所表示的类自身定义的所有方法(含私有方法，不含从超类继承的方法)
+        Method[] methods = cls.getDeclaredMethods();
+
+        System.out.println(cls.getSimpleName()+":一共有"+methods.length+"个公开方法");
+        for(Method method : methods){
+            System.out.println(method.getName());
+        }
+
     }
 }
 
